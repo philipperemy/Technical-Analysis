@@ -207,8 +207,3 @@ void CSVParser::normalize()
         for(int x=0; x<countLines(); x++)
             _normalizedValues[x][y] = (double) (getValue(x,y) / getMaxValueFromColumn(y));
 }
-
-string CSVParser::getFilename()
-{
-	return _filename;
-}
