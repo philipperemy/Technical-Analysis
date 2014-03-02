@@ -1,18 +1,17 @@
 package indicators.movingaverage;
 
-import out.Out;
+import series.TimeSeries;
+import utils.TAException;
 import com.tictactec.ta.lib.Core;
 import com.tictactec.ta.lib.MAType;
 import com.tictactec.ta.lib.MInteger;
 import com.tictactec.ta.lib.RetCode;
-import exception.TAException;
 
 public class MovingAverage
 {
-
-    public static Out ma(final double[] input, int period, MAType maType)
+    public static TimeSeries ma(final double[] input, int period, MAType maType)
     {
-        Out result = new Out();
+        TimeSeries result = new TimeSeries();
         double[] out = new double[input.length];
         MInteger begin = new MInteger();
         MInteger length = new MInteger();
@@ -23,15 +22,24 @@ public class MovingAverage
         switch (maType)
         {
             case Sma:
+            {
                 retCode = c.sma(0, input.length - 1, input, period, begin, length, out);
                 break;
-
+            }
             case Ema:
+            {
                 retCode = c.ema(0, input.length - 1, input, period, begin, length, out);
+                break;
+            }
             case Wma:
+            {
                 retCode = c.wma(0, input.length - 1, input, period, begin, length, out);
+                break;
+            }
             default:
-                throw new TAException();
+            {
+                throw new IllegalArgumentException();
+            }
         }
 
         for (int i = 0; i < input.length; i++)
