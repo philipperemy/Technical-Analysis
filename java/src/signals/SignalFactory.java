@@ -3,10 +3,16 @@ package signals;
 import java.util.ArrayList;
 import java.util.List;
 import series.TimeSeries;
+import series.TimeSeriesPair;
 import signals.Signal.Type;
 
 public class SignalFactory
 {
+    public static List<Signal> processTimeSeries_E(TimeSeriesPair tsp)
+    {
+        return processTimeSeries_E(tsp.referenceTS, tsp.secondaryTS);
+    }
+
     public static List<Signal> processTimeSeries_E(TimeSeries ts1, TimeSeries ts2)
     {
         List<Signal> signals = processTimeSeries(ts1, ts2);
@@ -20,7 +26,7 @@ public class SignalFactory
         return signals;
     }
 
-    public static List<Signal> processTimeSeries(TimeSeries ts1, TimeSeries ts2)
+    private static List<Signal> processTimeSeries(TimeSeries ts1, TimeSeries ts2)
     {
         // TODO: check bounds. This is a first attempt.
         List<Signal> signals = new ArrayList<>();

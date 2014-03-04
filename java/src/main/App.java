@@ -19,6 +19,13 @@ public class App
     static List<Signal> _signals = new ArrayList<>();
     static int MAX = 512;
 
+    /**
+     * [122, 125[ DOWN DOWN
+     * It means that at t=122, there is a double signal for DOWN. We can't know exactly where it's going to end.
+     * [125, 128[ UP DOWN
+     * Here it seems a good deal to exit.
+     */
+    
     public static void main(String[] args) throws FileNotFoundException
     {
         TimeSeries in = TimeSeriesGenerator.getRandomTimeSeries(MAX);
@@ -62,12 +69,6 @@ public class App
         System.out.println(partition.toString());
         partition.checkValidity_ThrowException();
 
-        for (int i = 0; i < MAX; i++)
-        {
-            // System.out.println("[ t=" + i + ", in=" + in.get(i) + ", sma1=" + sma1.get(i) + ", sma2= " + sma2.get(i) + " ]");
-            // System.out.println(i + "," + in.get(i) + "," + sma1.get(i) + "," + sma2.get(i));
-        }
-
         return partition;
     }
 
@@ -82,12 +83,6 @@ public class App
         IntervalPartition partition = PartitionHelper.getPartition(signals);
         System.out.println(partition.toString());
         partition.checkValidity_ThrowException();
-
-        for (int i = 0; i < MAX; i++)
-        {
-            System.out.println("[ t=" + i + ", in=" + in.get(i) + ", sma1=" + sma1.get(i) + ", sma2= " + sma2.get(i) + " ]");
-            // System.out.println(i + "," + in.get(i) + "," + sma1.get(i) + "," + sma2.get(i));
-        }
 
         return partition;
     }

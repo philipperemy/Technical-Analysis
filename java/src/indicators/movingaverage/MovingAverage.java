@@ -56,6 +56,7 @@ public class MovingAverage
 
         if (retCode == RetCode.Success)
         {
+            result.setId(maType.name() + period);
             return result;
         }
         else

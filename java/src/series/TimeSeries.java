@@ -9,6 +9,8 @@ public class TimeSeries
 {
     private Map<Integer, Double> timeSeries = new TreeMap<>();
 
+    private String               id;
+
     public void put(int time_AxisX, double decimalValue)
     {
         timeSeries.put(time_AxisX, decimalValue);
@@ -58,5 +60,15 @@ public class TimeSeries
             timeSeriesArray[i++] = valueEntry.getValue();
         }
         return timeSeriesArray;
+    }
+
+    public void setId(String id)
+    {
+        this.id = id;
+    }
+    
+    public String getId()
+    {
+        return id;
     }
 }
