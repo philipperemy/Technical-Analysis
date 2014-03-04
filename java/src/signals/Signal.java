@@ -4,6 +4,12 @@ import series.TimeSeries;
 
 public class Signal
 {
+    @Override
+    public String toString()
+    {
+        return "Signal [" + (signalType != null ? "signalType=" + signalType + ", " : "") + "time_start=" + time_start + ", time_end=" + time_end + "]";
+    }
+
     public Signal()
     {
 
@@ -14,7 +20,7 @@ public class Signal
         this.t1 = t1;
         this.t2 = t2;
         this.signalType = type;
-        this.time_AxisX = time_AxisX;
+        this.time_start = time_AxisX;
     }
 
     /**
@@ -41,5 +47,10 @@ public class Signal
     /**
      * This is the time point where the signal appears
      */
-    public int  time_AxisX;
+    public int  time_start;
+
+    /**
+     * This is the end of the signal (i.e. where an opposite signal occurs).
+     */
+    public int  time_end;
 }

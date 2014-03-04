@@ -8,6 +8,6 @@ public class Evaluator
 {
     public static void evaluator(TimeSeries timeSeries, List<Signal> signals)
     {
-        
+
     }
 }

@@ -18,7 +18,7 @@ public class PartitionHelper
         for (int i = 1; i < signals.size(); i++)
         {
             Signal s2 = signals.get(i);
-            Interval interval = new Interval(s1.time_AxisX, s2.time_AxisX);
+            Interval interval = new Interval(s1.time_start, s2.time_start);
             partition.add(interval);
             s1 = s2;
         }
@@ -45,11 +45,11 @@ public class PartitionHelper
         int t1 = 0;
         for (int t = 0; t < tmax; t++)
         {
-            //For a current t, if a partition has a limit point here, there is another interval to build.
+            // For a current t, if a partition has a limit point here, there is another interval to build.
             Integer t2 = null;
             for (IntervalPartition partition : partitions)
             {
-                if(partition.getLimitPoints().contains(t))
+                if (partition.getLimitPoints().contains(t))
                 {
                     t2 = t;
                     break;
@@ -59,7 +59,7 @@ public class PartitionHelper
             if (t2 != null)
             {
                 retPartition.add(new Interval(t1, t2));
-                
+
                 t1 = t2;
                 t2 = null;
             }

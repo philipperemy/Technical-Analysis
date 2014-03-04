@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class IntervalPartition 
+public class IntervalPartition
 {
     private List<Interval> intervals = new ArrayList<>();
 
@@ -15,28 +15,33 @@ public class IntervalPartition
         intervals.add(interval);
         Collections.sort(intervals);
     }
-    
+
     public List<Interval> intervals()
     {
         return intervals;
     }
-    
+
+    public int size()
+    {
+        return intervals.size();
+    }
+
     Set<Integer> getLimitPoints()
     {
         Set<Integer> limitPoints = new HashSet<>();
-        for(Interval interval : intervals)
+        for (Interval interval : intervals)
         {
             limitPoints.add(interval.tmin);
             limitPoints.add(interval.tmax);
         }
         return limitPoints;
     }
-    
+
     @Override
     public String toString()
     {
         StringBuilder sBuilder = new StringBuilder();
-        for(Interval interval : intervals)
+        for (Interval interval : intervals)
         {
             sBuilder.append(interval.toString());
             sBuilder.append(System.getProperty("line.separator"));
@@ -46,7 +51,7 @@ public class IntervalPartition
 
     public void checkValidity_ThrowException()
     {
-        for (int t = intervals.get(0).tmin; t < intervals.get(intervals.size()-1).tmax; t++)
+        for (int t = intervals.get(0).tmin; t < intervals.get(intervals.size() - 1).tmax; t++)
         {
             boolean contained = false;
             for (Interval i : intervals)

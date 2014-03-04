@@ -12,9 +12,9 @@ public class TimeSeriesGenerator
         out[0] = 1000;
         for (int i = 1; i < length; i++)
         {
-            out[i] = out[i-1] + random.nextInt(20) - random.nextInt(20); 
+            out[i] = out[i - 1] + 20 * random.nextDouble() - 20 * random.nextDouble();
         }
-        
+
         return new TimeSeries(out);
     }
 }
