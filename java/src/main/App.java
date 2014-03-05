@@ -17,7 +17,7 @@ import com.tictactec.ta.lib.MAType;
 public class App
 {
     static List<Signal> _signals = new ArrayList<>();
-    static int MAX = 512;
+    static int          MAX      = 512;
 
     /**
      * [122, 125[ DOWN DOWN
@@ -25,7 +25,7 @@ public class App
      * [125, 128[ UP DOWN
      * Here it seems a good deal to exit.
      */
-    
+
     public static void main(String[] args) throws FileNotFoundException
     {
         TimeSeries in = TimeSeriesGenerator.getRandomTimeSeries(MAX);
@@ -37,8 +37,8 @@ public class App
         IntervalPartition partition = PartitionHelper.getSmallestPartition(partitionList);
         partition.checkValidity_ThrowException();
         System.out.println(partition);
-        
-        for(Signal signal : _signals)
+
+        for (Signal signal : _signals)
         {
             System.out.println(signal);
         }

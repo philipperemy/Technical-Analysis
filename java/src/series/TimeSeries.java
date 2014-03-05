@@ -29,7 +29,7 @@ public class TimeSeries
     @Override
     public String toString()
     {
-        return timeSeries.toString();
+        return getId();
     }
 
     public int size()
@@ -66,7 +66,7 @@ public class TimeSeries
     {
         this.id = id;
     }
-    
+
     public String getId()
     {
         return id;

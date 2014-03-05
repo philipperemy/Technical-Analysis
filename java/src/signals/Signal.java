@@ -4,10 +4,11 @@ import series.TimeSeries;
 
 public class Signal
 {
+
     @Override
     public String toString()
     {
-        return "Signal [" + (signalType != null ? "signalType=" + signalType + ", " : "") + "time_start=" + time_start + ", time_end=" + time_end + "]";
+        return "Signal [" + (t1 != null ? "t1=" + t1 + ", " : "") + (t2 != null ? "t2=" + t2 + ", " : "") + (signalType != null ? "signalType=" + signalType + ", " : "") + "time_start=" + time_start + ", time_end=" + time_end + "]";
     }
 
     public Signal()
