@@ -47,7 +47,7 @@ public class StatefulRunner implements Runnable
         computeSmallestPartition();
         System.out.println("Cross signals...");
         Map<Interval, List<Signal>> actualSignalsMap = crossSignals();
-        
+
         System.out.println("Expected signals retrieval...");
         Map<Interval, Signal> expectedSignalMap = getExpectedSignalMap(actualSignalsMap.keySet());
 
