@@ -42,7 +42,7 @@ public class TALibTest
         Assert.assertTrue(interval2.contains(1));
         Assert.assertFalse(interval2.contains(2));
     }
-    
+
     @Test
     public void smoke_test_1()
     {
@@ -74,17 +74,18 @@ public class TALibTest
         Runner runner = new Runner();
         TimeSeriesPair tsp1 = new TimeSeriesPair(SMA_2, SMA_4);
         TimeSeriesPair tsp2 = new TimeSeriesPair(SMA_6, SMA_8);
-        runner.loadTimeSeries(tsp1, tsp2);
+        runner.loadTimeSeries(new TimeSeries(in), tsp1, tsp2);
         runner.run();
 
         List<Interval> intervals = runner.intervalPartition.intervals();
         List<Signal> signals = runner.signals;
 
         assertSmokeTest(intervals, signals);
-        
+
         Map<Interval, List<Signal>> crossedSignals = runner.crossSignalsMap;
         Assert.assertEquals(4, crossedSignals.size());
         runner.printCrossedSignals();
+
     }
 
     private void assertSmokeTest(List<Interval> intervals, List<Signal> signals)
