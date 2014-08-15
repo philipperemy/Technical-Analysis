@@ -14,7 +14,7 @@ import series.TimeSeriesPair;
 import signals.Signal;
 import signals.Signal.Type;
 import signals.SignalFactory;
-import signals.SignalHelper;
+import signals.SignalTools;
 import accuracy.AccuracyFunction;
 import accuracy.AggregateAccuracyFunction;
 import accuracy.SimpleAccuracyFunction;
@@ -136,7 +136,7 @@ public class StatefulRunner implements Runnable
     {
         for (TimeSeriesPair tsp : timeSeriesPairs)
         {
-            List<Signal> signals = SignalFactory.processTimeSeries_E(tsp);
+            List<Signal> signals = SignalFactory.processTimeSeries(tsp);
             signalMap.put(tsp, signals);
         }
     }
@@ -181,7 +181,7 @@ public class StatefulRunner implements Runnable
                 // System.out.print(interval);
                 for (Signal signal : getSignals())
                 {
-                    if (SignalHelper.signalContainedInInterval(signal, interval))
+                    if (SignalTools.signalContainedInInterval(signal, interval))
                     {
                         List<Signal> signals = crossSignalsMap.get(interval);
                         if (signals == null)

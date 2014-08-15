@@ -51,7 +51,19 @@ public class IntervalPartition
 
     public void checkValidity_ThrowException()
     {
-        for (int t = intervals.get(0).tmin; t < intervals.get(intervals.size() - 1).tmax; t++)
+        if(intervals.size() < 2)
+        {
+            throw new RuntimeException("Not enough intervals to compute a check");
+        }
+        
+        int max = intervals.get(intervals.size() - 1).tmax;
+        
+        if(max == PartitionHelper.INFINITY)
+        {
+            max = intervals.get(intervals.size() - 2).tmax;
+        }
+        
+        for (int t = intervals.get(0).tmin; t < max; t++)
         {
             boolean contained = false;
             for (Interval i : intervals)

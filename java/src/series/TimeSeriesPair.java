@@ -13,14 +13,19 @@ public class TimeSeriesPair
     @Override
     public String toString()
     {
-        StringBuilder sBuilder = new StringBuilder();
+        return "[" + referenceTS.getId() + "-" + secondaryTS.getId() + "]";
+    }
+
+    public String print()
+    {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < referenceTS.size(); i++)
         {
-            sBuilder.append("i=" + i + ", " + referenceTS.get(i) + ", " + secondaryTS.get(i));
-            sBuilder.append(System.getProperty("line.separator"));
+            sb.append("i= " + i + ", " + referenceTS.get(i) + ", " + secondaryTS.get(i));
+            sb.append(System.getProperty("line.separator"));
         }
 
-        return sBuilder.toString();
+        return sb.toString();
     }
 
     public TimeSeriesPair(TimeSeries refTS, TimeSeries secondaryTS)

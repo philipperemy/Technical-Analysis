@@ -2,7 +2,7 @@ package series;
 
 /**
  * All intervals are [tmin, tmax[ mainly because of partitions
- * The type of the interva is the type of tmin
+ * The type of the interval is the type of tmin
  */
 public class Interval implements Comparable<Interval>
 {
@@ -41,12 +41,10 @@ public class Interval implements Comparable<Interval>
 
     }
 
-    // A priori pas besoin de hashCode et equals parce qu'on regarde directement les adresses memoires.
-
     @Override
     public String toString()
     {
-        return "[" + tmin + ", " + tmax + "[";
+        return "[" + tmin + ", " + (tmax == PartitionHelper.INFINITY ? "INFINITY" : tmax) + "[";
     }
 
     public Interval(int tmin, int tmax)

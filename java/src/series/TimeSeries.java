@@ -11,6 +11,20 @@ public class TimeSeries
 
     private String               id;
 
+    public TimeSeries()
+    {
+
+    }
+
+    public TimeSeries(double[] timeSeriesArray)
+    {
+        int i = 0;
+        for (double decVal : timeSeriesArray)
+        {
+            timeSeries.put(i++, decVal);
+        }
+    }
+
     public void put(int time_AxisX, double decimalValue)
     {
         timeSeries.put(time_AxisX, decimalValue);
@@ -35,20 +49,6 @@ public class TimeSeries
     public int size()
     {
         return timeSeries.size();
-    }
-
-    public TimeSeries()
-    {
-
-    }
-
-    public TimeSeries(double[] timeSeriesArray)
-    {
-        int i = 0;
-        for (double decVal : timeSeriesArray)
-        {
-            timeSeries.put(i++, decVal);
-        }
     }
 
     public double[] toArray()

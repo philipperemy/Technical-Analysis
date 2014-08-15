@@ -1,10 +1,16 @@
 package series;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import signals.Signal;
 
 public class PartitionHelper
 {
+    public static final int INFINITY = -1;
+
     public static IntervalPartition getPartition(List<Signal> signals)
     {
         if (signals.size() <= 1)
@@ -23,48 +29,48 @@ public class PartitionHelper
             s1 = s2;
         }
 
+        // last interval
+        if (s1.time_end == 0)
+        {
+            // -1 represents +infinity
+            partition.add(new Interval(s1.time_start, INFINITY));
+        }
+
         return partition;
+    }
+
+    public static IntervalPartition getSmallestPartition(IntervalPartition... intervalPartitions)
+    {
+        return getSmallestPartition(Arrays.asList(intervalPartitions));
     }
 
     public static IntervalPartition getSmallestPartition(List<IntervalPartition> partitions)
     {
-        // TODO check if the start have to be 0.
         IntervalPartition retPartition = new IntervalPartition();
-        int tmax = 0;
+        Set<Integer> limitPoints = new TreeSet<>();
         for (IntervalPartition partition : partitions)
         {
-            for (int i : partition.getLimitPoints())
-            {
-                if (i > tmax)
-                {
-                    tmax = i;
-                }
-            }
+            limitPoints.addAll(partition.getLimitPoints());
         }
 
-        int t1 = 0;
-        for (int t = 0; t < tmax; t++)
+        boolean containsInfinity = limitPoints.contains(INFINITY);
+        if (containsInfinity)
         {
-            // For a current t, if a partition has a limit point here, there is another interval to build.
-            Integer t2 = null;
-            for (IntervalPartition partition : partitions)
-            {
-                if (partition.getLimitPoints().contains(t))
-                {
-                    t2 = t;
-                    break;
-                }
-            }
+            limitPoints.remove(INFINITY);
+        }
 
-            if (t2 != null)
-            {
-                retPartition.add(new Interval(t1, t2));
-
-                t1 = t2;
-                t2 = null;
-            }
+        List<Integer> list = new ArrayList<Integer>(limitPoints);
+        for (int i = 1; i < list.size(); i++)
+        {
+            retPartition.add(new Interval(list.get(i - 1), list.get(i)));
+        }
+        
+        if(containsInfinity)
+        {
+            retPartition.add(new Interval(list.get(list.size()-1), INFINITY));
         }
 
         return retPartition;
     }
+
 }

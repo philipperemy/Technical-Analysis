@@ -11,7 +11,7 @@ import series.TimeSeries;
 import series.TimeSeriesGenerator;
 import signals.Signal;
 import signals.SignalFactory;
-import signals.SignalHelper;
+import signals.SignalTools;
 import com.tictactec.ta.lib.MAType;
 
 public class App
@@ -48,7 +48,7 @@ public class App
             System.out.print(interval);
             for (Signal signal : _signals)
             {
-                if (SignalHelper.signalContainedInInterval(signal, interval))
+                if (SignalTools.signalContainedInInterval(signal, interval))
                 {
                     System.out.print(" " + signal.signalType);
                 }
@@ -62,7 +62,7 @@ public class App
         TimeSeries sma1 = MovingAverage.ma(in.toArray(), 4, MAType.Sma);
         TimeSeries sma2 = MovingAverage.ma(in.toArray(), 8, MAType.Sma);
 
-        List<Signal> signals = SignalFactory.processTimeSeries_E(sma1, sma2);
+        List<Signal> signals = SignalFactory.processTimeSeries(sma1, sma2);
         _signals.addAll(signals);
 
         IntervalPartition partition = PartitionHelper.getPartition(signals);
@@ -77,7 +77,7 @@ public class App
         TimeSeries sma1 = MovingAverage.ma(in.toArray(), 2, MAType.Sma);
         TimeSeries sma2 = MovingAverage.ma(in.toArray(), 3, MAType.Sma);
 
-        List<Signal> signals = SignalFactory.processTimeSeries_E(sma1, sma2);
+        List<Signal> signals = SignalFactory.processTimeSeries(sma1, sma2);
         _signals.addAll(signals);
 
         IntervalPartition partition = PartitionHelper.getPartition(signals);

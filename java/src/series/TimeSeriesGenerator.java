@@ -1,14 +1,15 @@
 package series;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;
 
 public class TimeSeriesGenerator
 {
-    static Random random = new Random();
+    private static Random random = new Random();
 
-    public static TimeSeries getRandomTimeSeries(final int length)
+    public static TimeSeries getRandomTimeSeries(int length)
     {
         double[] out = new double[length];
         out[0] = 100000;
@@ -28,9 +29,16 @@ public class TimeSeriesGenerator
         return new TimeSeries(out);
     }
 
-    public static void write(String path, TimeSeries ts) throws IOException
+    public static void write(String filename, TimeSeries ts) throws IOException
     {
-        PrintWriter pw = new PrintWriter(path);
+        File file = new File(filename);
+        
+        if(file.exists())
+        {
+            file.delete();
+        }
+        
+        PrintWriter pw = new PrintWriter(filename);
         for (int i = 0; i < ts.size(); i++)
         {
             pw.println(ts.get(i));
