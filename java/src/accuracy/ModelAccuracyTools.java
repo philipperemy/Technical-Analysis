@@ -42,22 +42,7 @@ public class ModelAccuracyTools
             List<Signal> actualSignals = entry.getValue();
             System.out.println("________________");
             double accuracy = f.accuracy(actualSignals, expectedSignals);
-            
-            if(accuracy == 1)
-            {
-                accountBalance += expectedPL.get(interval);
-            }
-            else if(accuracy == 0)
-            {
-                accountBalance -= expectedPL.get(interval);
-            }
-            else
-            {
-                //TODO: something there
-                //Refactor everything now
-                throw new RuntimeException("Invalid accuracy value");
-            }
-            
+
             System.out.println("acc = " + accuracy);
             System.out.println("I = " + interval);
             System.out.println("account balance = " + doubleToString(accountBalance));
@@ -65,6 +50,21 @@ public class ModelAccuracyTools
             if (evaluationMap.get(interval))
             {
                 accuracyList.add(accuracy);
+                
+                if(accuracy == 1)
+                {
+                    accountBalance += expectedPL.get(interval);
+                }
+                else if(accuracy == 0)
+                {
+                    accountBalance -= expectedPL.get(interval);
+                }
+                else
+                {
+                    //TODO: something there
+                    //Refactor everything now
+                    throw new RuntimeException("Invalid accuracy value");
+                }
             }
             else
             {
