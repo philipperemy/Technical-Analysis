@@ -1,7 +1,9 @@
-/test/
-/signals/
-/main/
-/runner/
-/series/
 /accuracy/
 /evaluator/
+/indicators/
+/parser/
+/runner/
+/series/
+/signals/
+/test/
+/utils/

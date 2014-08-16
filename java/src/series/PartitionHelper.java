@@ -64,10 +64,10 @@ public class PartitionHelper
         {
             retPartition.add(new Interval(list.get(i - 1), list.get(i)));
         }
-        
-        if(containsInfinity)
+
+        if (containsInfinity)
         {
-            retPartition.add(new Interval(list.get(list.size()-1), INFINITY));
+            retPartition.add(new Interval(list.get(list.size() - 1), INFINITY));
         }
 
         return retPartition;

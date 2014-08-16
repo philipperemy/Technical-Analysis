@@ -85,7 +85,6 @@ public class TALibTest
         Map<Interval, List<Signal>> crossedSignals = runner.crossSignalsMap;
         Assert.assertEquals(4, crossedSignals.size());
         runner.printCrossedSignals();
-
     }
 
     private void assertSmokeTest(List<Interval> intervals, List<Signal> signals)

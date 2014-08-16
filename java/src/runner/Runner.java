@@ -1,11 +1,11 @@
 package runner;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import accuracy.ModelAccuracyTools;
 import series.Interval;
 import series.IntervalPartition;
 import series.PartitionHelper;
@@ -14,14 +14,16 @@ import series.TimeSeriesPair;
 import signals.Signal;
 import signals.SignalFactory;
 import signals.SignalTools;
+import accuracy.ModelAccuracyTools;
 
 public class Runner implements Runnable
 {
     public TimeSeries                  priceCurveSeries;
-    public List<TimeSeriesPair>        timeSeriesPairs = new ArrayList<>();
-    public List<Signal>                signals         = new ArrayList<>();
+    public List<TimeSeriesPair>        timeSeriesPairs    = new ArrayList<>();
+    public List<Signal>                signals            = new ArrayList<>();
     public IntervalPartition           intervalPartition;
-    public Map<Interval, List<Signal>> crossSignalsMap = new LinkedHashMap<>();
+    public Map<Interval, List<Signal>> crossSignalsMap    = new LinkedHashMap<>();
+    public Map<Interval, Double>       expectedAbsolutePL = new HashMap<>();
 
     @Override
     public void run()
@@ -33,12 +35,12 @@ public class Runner implements Runnable
         System.out.println("Cross signals...");
         crossSignals();
         System.out.println("Compute accuracy...");
-        System.out.println("OVERALL ACCURACY : " + computeAccuracy());
+        System.out.println("OVERALL ACCURACY : " + ModelAccuracyTools.doubleToString(computeAccuracy()));
     }
 
     private double computeAccuracy()
     {
-        return ModelAccuracyTools.computeAccuracy(crossSignalsMap, getExpectedSignalMap());
+        return ModelAccuracyTools.computeAccuracy(crossSignalsMap, getExpectedSignalMap(), expectedAbsolutePL);
     }
 
     private Map<Interval, Signal> getExpectedSignalMap()
@@ -53,6 +55,8 @@ public class Runner implements Runnable
             {
                 throw new RuntimeException("Out of range.");
             }
+
+            expectedAbsolutePL.put(interval, Math.abs(closePrice - openPrice));
 
             Signal signal = new Signal();
             if (closePrice > openPrice)

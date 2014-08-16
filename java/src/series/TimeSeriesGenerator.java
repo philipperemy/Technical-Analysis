@@ -32,12 +32,12 @@ public class TimeSeriesGenerator
     public static void write(String filename, TimeSeries ts) throws IOException
     {
         File file = new File(filename);
-        
-        if(file.exists())
+
+        if (file.exists())
         {
             file.delete();
         }
-        
+
         PrintWriter pw = new PrintWriter(filename);
         for (int i = 0; i < ts.size(); i++)
         {

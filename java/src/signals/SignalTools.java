@@ -49,7 +49,7 @@ public class SignalTools
                 case DOWN:
                     down++;
                     break;
-                    
+
                 default:
                     throw new IllegalArgumentException();
             }

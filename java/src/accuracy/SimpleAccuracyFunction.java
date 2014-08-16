@@ -30,7 +30,7 @@ public class SimpleAccuracyFunction implements AccuracyFunction
         }
 
         double accuracy = 0;
-        System.out.print("}, expected = " + expectedSignal.signalType);
+        System.out.print("}, actual = " + expectedSignal.signalType);
         switch (expectedSignal.signalType)
         {
             case UP:
