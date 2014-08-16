@@ -10,9 +10,9 @@ import evaluator.SignalsEvaluator;
 
 public class ModelAccuracyTools
 {
-    private static AccuracyFunction          f = new SimpleAccuracyFunction();
+    private static SimpleAccuracyFunction          f = new SimpleAccuracyFunction();
 
-    private static AggregateAccuracyFunction a = new SimpleAggregateAccuracyFunction();
+    private static SimpleAggregateAccuracyFunction a = new SimpleAggregateAccuracyFunction();
 
     public static Double computeAccuracy(Map<Interval, List<Signal>> actualSignalsMap, Map<Interval, Signal> expectedSignalMap, Map<Interval, Double> expectedPL)
     {
@@ -50,19 +50,17 @@ public class ModelAccuracyTools
             if (evaluationMap.get(interval))
             {
                 accuracyList.add(accuracy);
-                
-                if(accuracy == 1)
+
+                if (accuracy == 1)
                 {
                     accountBalance += expectedPL.get(interval);
                 }
-                else if(accuracy == 0)
+                else if (accuracy == 0)
                 {
                     accountBalance -= expectedPL.get(interval);
                 }
                 else
                 {
-                    //TODO: something there
-                    //Refactor everything now
                     throw new RuntimeException("Invalid accuracy value");
                 }
             }
@@ -72,12 +70,12 @@ public class ModelAccuracyTools
             }
             System.out.println("________________");
         }
-        
+
         System.out.println("account balance TOTAL = " + doubleToString(accountBalance));
 
         return accuracyList;
     }
-    
+
     public static String doubleToString(double d)
     {
         return String.valueOf(d);

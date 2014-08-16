@@ -13,7 +13,6 @@ public class TimeSeries
 
     public TimeSeries()
     {
-
     }
 
     public TimeSeries(double[] timeSeriesArray)

@@ -35,7 +35,6 @@ public class Signal
      * If t1 rises above t2, then type = UP
      * If t1 drops below t2, type = DOWN
      */
-    // TODO: can be computed with ts1 and ts2 and time_start
     public Type             signalType;
 
     /**

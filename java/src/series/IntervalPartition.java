@@ -57,7 +57,6 @@ public class IntervalPartition
         }
 
         int max = intervals.get(intervals.size() - 1).tmax;
-
         if (max == PartitionHelper.INFINITY)
         {
             max = intervals.get(intervals.size() - 2).tmax;

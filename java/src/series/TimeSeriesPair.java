@@ -5,9 +5,10 @@ public class TimeSeriesPair
     public TimeSeries referenceTS;
     public TimeSeries secondaryTS;
 
-    public TimeSeriesPair()
+    public TimeSeriesPair(TimeSeries refTS, TimeSeries secondaryTS)
     {
-
+        this.referenceTS = refTS;
+        this.secondaryTS = secondaryTS;
     }
 
     @Override
@@ -24,13 +25,7 @@ public class TimeSeriesPair
             sb.append("i= " + i + ", " + referenceTS.get(i) + ", " + secondaryTS.get(i));
             sb.append(System.getProperty("line.separator"));
         }
-
         return sb.toString();
     }
 
-    public TimeSeriesPair(TimeSeries refTS, TimeSeries secondaryTS)
-    {
-        this.referenceTS = refTS;
-        this.secondaryTS = secondaryTS;
-    }
 }

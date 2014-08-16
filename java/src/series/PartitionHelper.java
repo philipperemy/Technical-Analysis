@@ -15,7 +15,7 @@ public class PartitionHelper
     {
         if (signals.size() <= 1)
         {
-            throw new RuntimeException("too few signals to make a partition");
+            throw new RuntimeException("too few signals to create a partition.");
         }
 
         IntervalPartition partition = new IntervalPartition();

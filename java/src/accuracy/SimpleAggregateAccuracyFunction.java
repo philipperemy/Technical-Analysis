@@ -2,9 +2,8 @@ package accuracy;
 
 import java.util.List;
 
-public class SimpleAggregateAccuracyFunction implements AggregateAccuracyFunction
+public class SimpleAggregateAccuracyFunction
 {
-    @Override
     public double aggregate(List<Double> accuracyList)
     {
         double sum = 0;

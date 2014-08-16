@@ -3,9 +3,8 @@ package accuracy;
 import java.util.List;
 import signals.Signal;
 
-public class SimpleAccuracyFunction implements AccuracyFunction
+public class SimpleAccuracyFunction
 {
-    @Override
     public double accuracy(List<Signal> actualSignals, Signal expectedSignal)
     {
         int bullish = 0;

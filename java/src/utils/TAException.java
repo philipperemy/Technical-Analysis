@@ -2,6 +2,8 @@ package utils;
 
 public class TAException extends RuntimeException
 {
+    private static final long serialVersionUID = 1L;
+
     public TAException(String message)
     {
         super(message);
@@ -12,5 +14,4 @@ public class TAException extends RuntimeException
         super();
     }
 
-    private static final long serialVersionUID = 1L;
 }

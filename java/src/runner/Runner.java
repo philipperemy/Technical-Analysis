@@ -28,14 +28,30 @@ public class Runner implements Runnable
     @Override
     public void run()
     {
-        System.out.println("Compute signals...");
+        /***
+         * Signal search
+         */
+        System.out.println("Searching for signals...");
         computeSignals();
-        System.out.println("Compute smallest partition...");
+        System.out.println("Found " + signals.size() + " signals.");
+        
+        /**
+         * Partition
+         */
+        System.out.println("Computing the smallest partition...");
         computeSmallestPartition();
-        System.out.println("Cross signals...");
+        System.out.println("The partition is split in " + intervalPartition.intervals().size() + " intervals.");
+        
+        /**
+         * Signal crossing
+         */
+        System.out.println("Crossing signals on the partition...");
         crossSignals();
-        System.out.println("Compute accuracy...");
-        System.out.println("OVERALL ACCURACY : " + ModelAccuracyTools.doubleToString(computeAccuracy()));
+        
+        /**
+         * Accuracy
+         */
+        System.out.println("Compute accuracy... " + computeAccuracy());
     }
 
     private double computeAccuracy()
@@ -87,7 +103,6 @@ public class Runner implements Runnable
         for (TimeSeriesPair tsp : timeSeriesPairs)
         {
             List<Signal> signals = SignalFactory.processTimeSeries(tsp);
-            System.out.println(tsp + " " + signals);
             this.signals.addAll(signals);
         }
     }
@@ -99,7 +114,6 @@ public class Runner implements Runnable
 
     private void crossSignals()
     {
-        // interval 1
         for (Interval i : intervalPartition.intervals())
         {
             for (Signal signal : signals)

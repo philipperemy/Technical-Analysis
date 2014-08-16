@@ -6,8 +6,9 @@ import java.util.List;
 
 public class CSVParser
 {
-    String               filename;
-    private List<String> closePrices = new ArrayList<>();
+    String                  filename;
+    public static final int CLOSE_PRICE = 5;
+    private List<String>    closePrices = new ArrayList<>();
 
     public CSVParser(String filename)
     {
@@ -20,7 +21,7 @@ public class CSVParser
             while ((line = reader.readLine()) != null)
             {
                 String[] lineAr = line.split(";");
-                closePrices.add(lineAr[5]);
+                closePrices.add(lineAr[CLOSE_PRICE]);
             }
 
             reader.close();

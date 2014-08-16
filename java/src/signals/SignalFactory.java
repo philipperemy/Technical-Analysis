@@ -28,7 +28,6 @@ public class SignalFactory
 
     private static List<Signal> processTimeSeriesInternal(TimeSeries ts1, TimeSeries ts2)
     {
-        // TODO: check bounds. This is a first attempt.
         List<Signal> signals = new ArrayList<>();
         for (int i = 1; i < ts1.size(); i++)
         {
